@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CosmeNoide · Sec ` Dev Portfolio</title>
+    <style>
+        /* ===== RESET Y FUENTES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0b0e14;
+            background-image: radial-gradient(circle at 10% 20%, rgba(0, 255, 0, 0.03) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, rgba(0, 255, 0, 0.03) 0%, transparent 50%);
+            font-family: 'Fira Code', 'Courier New', monospace;
+            color: #c5c8c6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 720px;
+            width: 100%;
+            background: rgba(11, 14, 20, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid #1e2a36;
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 0 60px rgba(0, 255, 0, 0.05), inset 0 0 60px rgba(0, 255, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #2ecc71, transparent);
+            opacity: 0.6;
+        }
+
+        /* ===== CABECERA ===== */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid #2ecc71;
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.15);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            background: #0b0e14;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .logo-placeholder {
+            font-size: 3rem;
+            color: #2ecc71;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .header h1 {
+            font-size: 2.4rem;
+            color: #2ecc71;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .header .sub {
+            font-size: 0.95rem;
+            color: #8e8e8e;
+            border-top: 1px solid #1e2a36;
+            border-bottom: 1px solid #1e2a36;
+            padding: 10px 0;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+        .header .sub span {
+            color: #2ecc71;
+        }
+        .header .tagline {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .header .tagline .badge {
+            background: #1e2a36;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            color: #b0b0b0;
+            border: 1px solid #2c3e50;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== ENLACES / PROYECTOS ===== */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 30px 0 25px;
+        }
+        .link-item {
+            background: #12181f;
+            border: 1px solid #1e2a36;
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: #c5c8c6;
+            position: relative;
+            overflow: hidden;
+        }
+        .link-item:hover {
+            border-color: #2ecc71;
+            background: #1a222c;
+            box-shadow: 0 0 25px rgba(46, 204, 113, 0.05), inset 0 0 25px rgba(46, 204, 113, 0.02);
+            transform: translateX(6px);
+        }
+        .link-item .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #0b0e14;
+            border: 1px solid #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            color: #2ecc71;
+            transition: 0.2s;
+        }
+        .link-item:hover .icon {
+            border-color: #2ecc71;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.15);
+        }
+        .link-item .content {
+            flex: 1;
+        }
+        .link-item .content .title {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #e0e0e0;
+            letter-spacing: 0.3px;
+            transition: 0.2s;
+        }
+        .link-item:hover .content .title {
+            color: #2ecc71;
+        }
+        .link-item .content .desc {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            margin-top: 2px;
+        }
+        .link-item .arrow {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .link-item:hover .arrow {
+            color: #2ecc71;
+            transform: translateX(4px);
+        }
+        .link-item::after {
+            content: '>';
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+            font-size: 1.2rem;
+            color: #2ecc71;
+            opacity: 0;
+            transition: 0.3s;
+            font-weight: 700;
+        }
+        .link-item:hover::after {
+            opacity: 0.3;
+            transform: translateX(-6px);
+        }
+
+        /* ===== SOCIAL ===== */
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 1px solid #1e2a36;
+            flex-wrap: wrap;
+        }
+        .social a {
+            color: #7f8c8d;
+            font-size: 1.6rem;
+            transition: 0.25s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 30px;
+            border: 1px solid transparent;
+        }
+        .social a:hover {
+            color: #2ecc71;
+            border-color: #2ecc71;
+            background: rgba(46, 204, 113, 0.05);
+            transform: translateY(-2px);
+        }
+        .social a .label {
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.75rem;
+            color: #4a5555;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #1e2a36;
+            padding-top: 20px;
+        }
+        .footer .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 2px;
+            background: #2ecc71;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 550px) {
+            .container { padding: 25px 18px; }
+            .header h1 { font-size: 1.8rem; }
+            .link-item { padding: 14px 16px; gap: 12px; }
+            .link-item .icon { width: 34px; height: 34px; font-size: 1.2rem; }
+            .social a { font-size: 1.3rem; padding: 4px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ===== CABECERA ===== -->
+        <div class="header">
+            <div class="logo">
+                <!-- 🔽 CAMBIA "mi-logo.png" por la ruta de tu imagen (120x120px) -->
+                <img src="mi-logo.png" alt="CosmeNoide logo" />
+                <!-- Si no tienes imagen, descomenta la línea de abajo y comenta la de arriba -->
+                <!-- <div class="logo-placeholder">◈</div> -->
+            </div>
+            <h1>CosmeNoide</h1>
+            <div class="sub">
+                <span>✦</span> Flutter Dev &amp; Security <span>✦</span>
+            </div>
+            <div class="tagline">
+                <span class="badge">#DomesticFlow</span>
+                <span class="badge">#Shun_neones</span>
+                <span class="badge">#Cosm3SecureChat</span>
+                <span class="badge">#Cosm3_Firewall</span>
+            </div>
+        </div>
+
+        <!-- ===== ENLACES (PROYECTOS) ===== -->
+        <div class="links">
+            <!-- 1. Domestic Flow -->
+            <a href="https://tudominio.com/domestic-flow" target="_blank" class="link-item">
+                <div class="icon">🏠</div>
+                <div class="content">
+                    <div class="title">Domestic Flow</div>
+                    <div class="desc">Conectando necesidades con oportunidades</div>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+
+            <!-- 2. Cosm3SecureChat -->
+            <a href="https://tudominio.com/securechat" target="_blank" class="link-item">
+                <div class="icon">🔒</div>
+                <div class="content">
+                    <div class="title">Cosm3SecureChat</div>
+                    <div class="desc">Enterprise Grade Privacy · Mensajería segura</div>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+
+            <!-- 3. Cosm3_Firewall -->
+            <a href="https://tudominio.com/firewall" target="_blank" class="link-item">
+                <div class="icon">🛡️</div>
+                <div class="content">
+                    <div class="title">Cosm3_Firewall</div>
+                    <div class="desc">Mobile Defense Suite · Protección avanzada</div>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+
+            <!-- 4. Cosm3nolde WiFi Tool -->
+            <a href="https://tudominio.com/wifi-tool" target="_blank" class="link-item">
+                <div class="icon">📶</div>
+                <div class="content">
+                    <div class="title">Cosm3nolde</div>
+                    <div class="desc">WiFi Tool · Auditoría de Red Profesional</div>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+
+            <!-- 5. GitHub -->
+            <a href="https://github.com/CosmeNoide" target="_blank" class="link-item">
+                <div class="icon">🐙</div>
+                <div class="content">
+                    <div class="title">GitHub</div>
+                    <div class="desc">Cosm3Noide · Open Source &amp; Projects</div>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+
+            <!-- 6. Instagram -->
+            <a href="https://www.instagram.com/cosmenoide/" target="_blank" class="link-item">
+                <div class="icon">📷</div>
+                <div class="content">
+                    <div class="title">Instagram</div>
+                    <div class="desc">@cosmenoide · Visual &amp; Dev</div>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+
+            <!-- 7. SoundCloud -->
+            <a href="https://soundcloud.com/demorados-rock" target="_blank" class="link-item">
+                <div class="icon">🎧</div>
+                <div class="content">
+                    <div class="title">SoundCloud</div>
+                    <div class="desc">Demorados Rock · Música</div>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+        </div>
+
+        <!-- ===== SOCIAL (iconos extra) ===== -->
+        <div class="social">
+            <a href="https://github.com/CosmeNoide" target="_blank" title="GitHub">
+                <span>🐙</span><span class="label">GitHub</span>
+            </a>
+            <a href="https://www.instagram.com/cosmenoide/" target="_blank" title="Instagram">
+                <span>📷</span><span class="label">Instagram</span>
+            </a>
+            <a href="https://soundcloud.com/demorados-rock" target="_blank" title="SoundCloud">
+                <span>🎧</span><span class="label">SoundCloud</span>
+            </a>
+            <!-- Añade más enlaces aquí si lo deseas -->
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            <span>✦ CosmeNoide · Sec | Dev ✦</span>
+            <span class="cursor"></span>
+        </div>
+
+    </div>
+</body>
+</html>
